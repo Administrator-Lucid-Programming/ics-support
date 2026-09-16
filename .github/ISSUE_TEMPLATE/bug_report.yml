@@ -12,8 +12,8 @@ body:
         the smallest example that still reproduces it and paste that instead.
 
         If you arrived here from the extension's "Report Issue" button, the
-        environment section below is already filled in — please add what you
-        were doing and submit.
+        version fields below are already filled in. Paste the reviewed report
+        into Error details, add what you were doing, and submit.
 
   - type: textarea
     id: what-happened
@@ -98,5 +98,5 @@ body:
     id: error
     attributes:
       label: Error details
-      description: Paste the report from the extension's "Report Issue" button, if you have one.
+      description: Paste the reviewed local report from the extension, if you have one.
       render: text

@@ -9,7 +9,8 @@ have a public place to report bugs and ask questions.
 
 Open an issue using the bug report template. The quickest route is the
 **Report Issue** button on the error notification in VS Code, which fills in
-your extension version, VS Code version, and the error details for you.
+your extension and VS Code versions. It prepares error details locally for you
+to review and paste deliberately.
 
 **Please do not paste proprietary source code into an issue.** Issues here are
 public. If a particular construct triggers a bug, reduce it to the smallest
@@ -18,10 +19,11 @@ example that still reproduces it.
 ## Privacy
 
 The ICS converter runs entirely on your machine and contains no networking
-code. The extension makes network requests to exactly one destination —
-`api.lemonsqueezy.com` — and only when activating or validating a licence key.
-No source code, file names, or file paths are transmitted, ever.
+code. License operations use `api.lemonsqueezy.com`.
 
-Error reports are never sent automatically. The **Report Issue** button
-prepares a report and opens it in your browser for you to read; nothing is
-submitted unless you choose to submit it.
+Error reports are never sent automatically. The **Report Issue** button first
+opens an untitled local report for review. Recognizable paths and filenames are
+redacted, but error text may still contain project identifiers or source
+fragments. After reviewing and editing it, you may explicitly copy the report
+and open this public issue tracker. Nothing from the report is placed in the
+GitHub URL; you must paste and submit it deliberately.
