@@ -1,0 +1,102 @@
+name: Bug report
+description: Something in the ICS extension does not work as expected.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem.
+
+        **Please do not paste proprietary source code into this issue.** Issues
+        here are public. If a specific construct triggers the bug, reduce it to
+        the smallest example that still reproduces it and paste that instead.
+
+        If you arrived here from the extension's "Report Issue" button, the
+        environment section below is already filled in — please add what you
+        were doing and submit.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open a C# file
+        2. Run "ICS: Open C# as ICS"
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: sample
+    attributes:
+      label: Minimal example (optional)
+      description: The smallest snippet that reproduces the problem. Please make sure it is not proprietary.
+      render: csharp
+
+  - type: input
+    id: extension-version
+    attributes:
+      label: Extension version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: input
+    id: vscode-version
+    attributes:
+      label: VS Code version
+      placeholder: "1.100.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: dotnet
+    attributes:
+      label: Is the .NET 10 runtime installed on this machine?
+      description: The converter needs it. If you are not sure, run `dotnet --list-runtimes` in a terminal.
+      options:
+        - "Yes"
+        - "No"
+        - "Not sure"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: remote
+    attributes:
+      label: Where is VS Code running?
+      options:
+        - Locally
+        - WSL
+        - Dev container
+        - Remote SSH
+        - GitHub Codespaces
+    validations:
+      required: true
+
+  - type: textarea
+    id: error
+    attributes:
+      label: Error details
+      description: Paste the report from the extension's "Report Issue" button, if you have one.
+      render: text

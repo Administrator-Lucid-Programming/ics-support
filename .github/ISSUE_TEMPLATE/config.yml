@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Licence or billing question
+    url: https://app.lemonsqueezy.com/my-orders
+    about: Manage your licence, find your key, or release a machine activation.
+  - name: Question about using ICS
+    url: https://github.com/Administrator-Lucid-Programming/ics-support/issues
+    about: Ask here — questions are welcome as issues.
