@@ -5,6 +5,9 @@ Issue tracker for the **ICS Language Tools** extension for Visual Studio Code.
 This repository holds no source code. It exists so that users of the extension
 have a public place to report bugs and ask questions.
 
+The [VS Code user guide](docs/vscode-guide.md) covers preview editing, recovery,
+settings, commands, language services, and troubleshooting.
+
 ## Reporting a bug
 
 Open an issue using the bug report template. The quickest route is the
