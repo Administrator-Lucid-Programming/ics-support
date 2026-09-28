@@ -1,6 +1,6 @@
 # Privacy notice — ICS for Visual Studio
 
-Last updated: 24 September 2026
+Last updated: 28 September 2026
 
 ICS conversion, diagnostics, formatting, live projections, recovery snapshots,
 and conflict backups run locally. The extension does not intentionally transmit
@@ -10,11 +10,16 @@ analytics or usage telemetry.
 
 ## License operations
 
-When you activate, validate, or deactivate ICS Pro, the extension contacts
-`api.lemonsqueezy.com`. It sends the license key and a pseudonymous instance
-identifier derived from the Windows machine identifier. Validation and
-deactivation also send the Lemon Squeezy activation instance ID. No source code
-or project information is included.
+ICS Pro activation, validation, and user-requested deactivation contact
+`api.lemonsqueezy.com`. Activation sends the license key and a pseudonymous
+instance name derived from the Windows machine identifier. Validation and
+deactivation send the license key and Lemon Squeezy activation instance ID.
+No source code or project information is included.
+
+Validation can run automatically during extension initialization or a Pro-access
+check when there is no valid cached result. If a saved key lacks a matching
+instance record, that check can reactivate it. These requests do not require you
+to invoke **ICS: Refresh License** manually.
 
 The raw license key is encrypted for the current Windows user with DPAPI. The
 extension stores only activation metadata, a hash of the key, the expected

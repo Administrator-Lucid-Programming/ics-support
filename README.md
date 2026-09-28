@@ -1,12 +1,13 @@
 # ICS Language Tools — support
 
-Issue tracker for the **ICS Language Tools** extension for Visual Studio Code.
+Issue tracker and user guides for **ICS — Indented C#** for VS Code and Visual Studio.
 
 This repository holds no source code. It exists so that users of the extension
 have a public place to report bugs and ask questions.
 
-The [VS Code user guide](docs/vscode-guide.md) covers preview editing, recovery,
-settings, commands, language services, and troubleshooting.
+The [VS Code user guide](docs/vscode-guide.md) and
+[Visual Studio user guide](docs/visual-studio-guide.md) cover preview editing,
+recovery, settings, commands, language services, and troubleshooting.
 
 ## Reporting a bug
 
