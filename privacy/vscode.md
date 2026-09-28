@@ -1,6 +1,6 @@
 # ICS Language Tools Privacy Notice
 
-Effective September 15, 2026
+Effective September 27, 2026
 
 ## Summary
 
@@ -30,6 +30,11 @@ extension, services, settings, and privacy terms govern that installation.
 
 Network access to `https://api.lemonsqueezy.com` occurs only for ICS Pro license
 activation, periodic validation, and user-requested deactivation.
+
+Validation can happen automatically when Pro access is checked and the cached
+result has expired, including at startup when Pro settings are enabled. It does
+not require choosing the Refresh License command. If a saved key has no matching
+activation instance in local storage, that check attempts activation instead.
 
 During activation, the extension sends:
 
