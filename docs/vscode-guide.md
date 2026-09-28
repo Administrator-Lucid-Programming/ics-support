@@ -57,6 +57,35 @@ Open VS Code Settings and search for **ICS**. Free live pairing works without co
 
 Changing conversion settings refreshes open ICS previews. Settings are scoped to the file: a workspace setting will not apply to a file opened outside that workspace.
 
+### Optional braces in regenerated C#
+
+Structural C# braces disappear in the ICS view without enabling `ics.removeBraces`. Turning it on changes the C# you get back: when a preview edit is applied, optional braces—such as those around a single-statement `if`—are removed where safe within the regenerated region. Braces needed to preserve valid C#, scope, `else` binding or preprocessor structure are retained. C# outside that region is preserved exactly, although some edits require regenerating a larger enclosing region. The setting is off by default.
+
+For example, start with this C#:
+
+```csharp
+if (ready)
+{
+    Send(1);
+}
+```
+
+The ICS view already omits those braces with either setting:
+
+```text
+if (ready)
+    Send(1)
+```
+
+With `ics.removeBraces` enabled, changing `if (ready)` to `if (!ready)` in the preview regenerates that `if` statement as:
+
+```csharp
+if (!ready)
+    Send(1);
+```
+
+Opening an unchanged preview does not rewrite the original C#. An edit confined to `Send(1)` can preserve the surrounding `if` braces because they lie outside the regenerated region.
+
 ## Complete command reference
 
 | Command | Purpose |
