@@ -29,11 +29,14 @@ extension, services, settings, and privacy terms govern that installation.
 ## License activation and validation
 
 Network access to `https://api.lemonsqueezy.com` occurs only for ICS Pro license
-activation, periodic validation, and user-requested deactivation.
+activation, periodic validation, and deactivation. Deactivation is sent when you
+request it, and automatically to release an activation the extension has just
+rejected, for example a key that belongs to a different product.
 
 Validation can happen automatically when Pro access is checked and the cached
-result has expired, including at startup when Pro settings are enabled. It does
-not require choosing the Refresh License command. If a saved key has no matching
+result has expired or is within seven days of expiring, including at startup
+when Pro settings are enabled. It does not require choosing the Refresh License
+command. If a saved key has no matching
 activation instance in local storage, that check attempts activation instead.
 
 During activation, the extension sends:
@@ -49,7 +52,9 @@ During later validation, the extension sends:
 During deactivation, the extension sends the same license key and instance
 identifier. After Lemon Squeezy confirms deactivation, the extension deletes
 the locally stored license key, instance state, and validation cache. If
-deactivation fails, that local data is retained so the request can be retried.
+deactivation fails, the extension validates the activation once; when Lemon
+Squeezy reports that it no longer exists, the local data is deleted as well.
+Otherwise that local data is retained so the request can be retried.
 Uninstalling the extension or deleting its local data does not itself send a
 deactivation request to Lemon Squeezy.
 
@@ -76,7 +81,8 @@ The extension stores:
   product identifiers, and the most recent validation message.
 
 A successful validation is cached for no more than 30 days and never beyond a
-known earlier license expiration date.
+known earlier license expiration date. The cached validation result is kept in
+an encrypted, tamper-evident form in VS Code's global state.
 
 This information is used only to activate, validate, deactivate, and cache ICS
 Pro access. It remains under VS Code's local extension-storage mechanisms until
@@ -90,8 +96,11 @@ or placed in the source tree. The active recovery copy is removed when the paire
 C# has been synchronized and saved. Each window also maintains its own latest
 snapshot per source, preventing another window from overwriting the only copy.
 Saving synchronized C# retires that window's snapshot; snapshots from other or
-previous sessions remain for manual recovery. Explicit conflict resolution and
-preview reversion also retain backups until you remove them. Use **ICS: Open Preview
+previous sessions remain for manual recovery. Explicit conflict resolution,
+preview reversion, discarding preview edits and closing a preview without
+saving edits that never reached C# also retain backups. Those
+session snapshots and backups are removed automatically once they have gone 30
+days without being written; you can remove them sooner. Use **ICS: Open Preview
 Recovery Folder** to inspect or delete these files. The files are not encrypted by
 ICS and rely on your operating system's account and storage protections.
 
