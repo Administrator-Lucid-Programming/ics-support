@@ -20,9 +20,9 @@ Saving a valid, synchronized ICS preview saves the paired C# file. Pro's `ics.au
 
 If both panes change independently, neither silently overwrites the other. Use **ICS: Resolve Preview Conflict** to review the versions and choose one. Conflict resolution keeps a local backup of both versions.
 
-Saving an incomplete or conflicting preview stores a **local recovery draft**, not C#. The status tooltip says **Draft saved; C# not updated**. Reopening the same preview restores its latest active draft. Each VS Code window also retains its own latest snapshot for the source, so another window cannot erase its only recovery copy. Once synchronized C# is saved, the active draft and that window's snapshot are removed. Older-window snapshots and conflict backups remain for manual recovery; they are never silently merged.
+Saving an incomplete or conflicting preview stores a **local recovery draft**, not C#. The status tooltip says **Draft saved; C# not updated**. Reopening the same preview restores its latest active draft. Each VS Code window also retains its own latest snapshot for the source, so another window cannot erase its only recovery copy. Once synchronized C# is saved, the active draft and that window's snapshot are removed. Older-window snapshots and conflict backups remain for manual recovery until removed or expired; they are never silently merged.
 
-Recovery snapshots and backups contain C# and ICS source text. They stay in the extension's local storage rather than beside the project files and are not uploaded. They are not encrypted by ICS. Run **ICS: Open Preview Recovery Folder** to inspect or delete retained files. See the [VS Code privacy notice](../privacy/vscode.md) for the data-retention details.
+Recovery snapshots and backups contain C# and ICS source text. They stay in the extension's local storage rather than beside the project files and are not uploaded. They are not encrypted by ICS. Retained session snapshots and conflict backups expire after **30 days without an update** and are removed during the extension's automatic cleanup. This age limit does not apply to the active recovery draft. Run **ICS: Open Preview Recovery Folder** to inspect or delete retained files sooner. See the [VS Code privacy notice](../privacy/vscode.md) for the data-retention details.
 
 ## Other workflows
 
@@ -55,7 +55,9 @@ Open VS Code Settings and search for **ICS**. Free live pairing works without co
 | `ics.tabWidth` | unset | Override spaces per logical tab stop; otherwise use nearest `.editorconfig` `tab_width`. ICS uses spaces. |
 | `ics.enableDiagnostics` | `true` | Publish ICS parse and generated-C# diagnostics. |
 
-Changing conversion settings refreshes open ICS previews. Settings are scoped to the file: a workspace setting will not apply to a file opened outside that workspace.
+Changing conversion settings refreshes open ICS previews. Most conversion and editing settings are resolved for the current file: a workspace setting will not apply to a file opened outside that workspace.
+
+`ics.converterCommand` (the converter executable), `ics.converterArgs` (its arguments), and `ics.purchaseUrl` (the Pro purchase destination) are **user-only, machine-scoped settings**. Configure them in the **User** tab of VS Code Settings or through **Preferences: Open User Settings (JSON)**, not in Workspace or folder settings such as `.vscode/settings.json`. A workspace cannot choose the executable, its arguments, or the purchase destination. Normally, leave the converter settings at their defaults to use the bundled converter and managed .NET runtime.
 
 ### Optional braces in regenerated C#
 
@@ -125,4 +127,4 @@ Pause typing, start the measurement, use the editor normally, then pause and fin
 
 If **Open C# as ICS** shows no preview, open VS Code's **Output** panel (`Ctrl+Shift+U`) and select **ICS Language Server**. Converter errors appear there. If automatic runtime installation fails, run **.NET Install Tool: Show Installation Log** and check network or proxy settings.
 
-If diagnostics cite inaccessible or missing project symbols, see [Language services and diagnostics](#language-services-and-diagnostics). If conversion options do not apply, check whether the file is outside the workspace where you set them.
+If diagnostics cite inaccessible or missing project symbols, see [Language services and diagnostics](#language-services-and-diagnostics). If conversion options do not apply, check whether the file is outside the workspace where you set them. For `ics.converterCommand`, `ics.converterArgs`, and `ics.purchaseUrl`, check User settings instead; Workspace and folder values do not apply.
